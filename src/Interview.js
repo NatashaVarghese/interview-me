@@ -50,6 +50,14 @@ class Feedback extends React.Component {
     }
 
     submit() {
+         if (this.state.professionalism === 0 ||
+             this.state.communication === 0 ||
+             this.state.correctness === 0 ||
+             this.state.enthusiasm === 0 ||
+             this.state.description === "") {
+            alert("Please fill in all fields");
+            return false;
+        }
         this.setState({showReview: false});
     }
 
