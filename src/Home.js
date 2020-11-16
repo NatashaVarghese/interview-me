@@ -2,11 +2,21 @@ import React, { useState} from 'react'
 import Questions from './Questions';
 import styled from 'styled-components';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 
 const Styles = styled.div`
     .container {
         margin: auto;
         width: 80%;
+    }
+
+    input {
+        width: 600px;
+        height: 30px;
+    }
+
+    .add {
+        float: right;
     }
 `;
 
@@ -28,6 +38,7 @@ function Home() {
 
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulty, setSelectedDifficulty] = useState();
+    const [selectedKeyword, setSelectedKeyword] = useState();
  
     const handleTopicsChange = (e) => {
         setSelectedTopics(Array.isArray(e) ? e.map(x => x.value) : []);
@@ -37,25 +48,48 @@ function Home() {
         setSelectedDifficulty(e.value);
     }
 
+    const handleKeywordChange = e => {
+        setSelectedKeyword(e.target.value.substr(0,20));
+    }
+
     return (
             <Styles>
                 <div className="container">
-                <p>Browse Questions</p>
-                <label>Topics</label>
+                <span>
+                <br/>
+                <label><b>Browse Questions</b></label>
+                <Link to="./add">
+                    <button class="add">
+                        Add a Question
+                    </button>
+                </Link>
+                <br/>
+                </span>
+                <br/>
+                <label>Search by keyword:</label>
+                <br/>
+                <input 
+                    type="text"
+                    value={selectedKeyword}
+                    onChange={handleKeywordChange}
+                    placeholder="Browse by keyword"
+                />
+                <br/>
+                <label>Topics:</label>
                 <Select 
                     options={topics} 
                     value={topics.filter(obj => selectedTopics.includes(obj.value))}
                     onChange={handleTopicsChange}
                     isMulti
                 />
-                <a>Difficulty</a>
+                <a>Difficulty:</a>
                 <Select
                     options={difficulty} 
                     value={difficulty.find(obj => obj.value === selectedDifficulty)}
                     onChange={handleDifficultyChange}
                 />
                 <br/>
-                <Questions tags={selectedTopics} difficulty={selectedDifficulty}/>
+                <Questions tags={selectedTopics} difficulty={selectedDifficulty} keyword={selectedKeyword}/>
                 </div>
             </Styles>
     );

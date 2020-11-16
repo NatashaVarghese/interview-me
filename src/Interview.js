@@ -33,6 +33,7 @@ const Styles = styled.div`
     .icon-padding {
         padding: 3px;
     }
+
 `;
 
 class Feedback extends React.Component {
@@ -58,7 +59,7 @@ class Feedback extends React.Component {
                 {this.state.showReview && 
                 <div>
                     <br/>
-                    <label>How would you rate the following qualites during the interview?</label><br/><br/>
+                    <label>How would you rate the following qualities during the interview?</label><br/><br/>
                     <span>
                     Professionalism
                     <ReactStars
@@ -163,8 +164,8 @@ class Interview extends React.Component {
                         timeFormat={true}
                         inputProps={{ placeholder: "Start Date" }}
                     />
-                    <div>Meeting Location or Link: </div>
-                    <input class="scheduleLink" type="text"  onChange={(event) => this.setState({location: event.target.value})} value={this.state.location}></input><br/>
+                    <div>Meeting Link: </div>
+                    <input type="text"  onChange={(event) => this.setState({location: event.target.value})} value={this.state.location}></input><br/>
                     <button class="submit" onClick={this.submit.bind(this)}>Schedule Interview</button>
                 </div>
                 <div>
@@ -177,7 +178,7 @@ class Interview extends React.Component {
                                 <div class="interview-info">
                                     {interviewee}
                                     Date: {moment(interviewDate).format("ddd MMM DD YYYY hh:mm a").toString()}<br/>
-                                    Location: {interviewLocation} 
+                                    Meeting Link: <a href={interviewLocation}>{interviewLocation}</a> 
                                 </div>
                                 <Feedback></Feedback>
                             </div>

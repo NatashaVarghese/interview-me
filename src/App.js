@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import Home from './Home';
 import Interview from './Interview';
-import Review from './Review';
+import Add from './Add';
+import Submit from './Submit';
 
 class App extends React.Component {
     render() {
@@ -14,7 +15,8 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/interview" component={Interview}/>
-                    <Route path="/review" component={Review}/>
+                    <Route path="/add" component={Add}/>
+                    <Route path="/submit" component={Submit}/>
                 </Switch>
             </Router>
         );
